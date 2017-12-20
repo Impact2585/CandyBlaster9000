@@ -1,13 +1,13 @@
 package org.usfirst.frc.team2585.robot;
 
-import org.impact2585.lib2585.RunnableExecuter;
+import org.impact2585.lib2585.RunnableExecutor;
 import org.usfirst.frc.team2585.systems.Initializable;
 import org.usfirst.frc.team2585.systems.RobotSystem;
 
 /**
  * Executor for the teleop period that uses input from a controller to control the robot's actions
  */
-public class TeleopExecutor extends RunnableExecuter implements Initializable {
+public class TeleopExecutor extends RunnableExecutor implements Initializable {
 	
 	private static final long serialVersionUID = 7239880156928339903L;
 

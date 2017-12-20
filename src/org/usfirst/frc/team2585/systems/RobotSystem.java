@@ -24,5 +24,10 @@ public abstract class RobotSystem implements Destroyable, Initializable, Runnabl
 	public synchronized void setInput(InputMethod newInput) {
 		input = newInput;
 	}
+	
+	/**
+	 * Set all speed controllers to zero
+	 */
+	public abstract void stop();
 
 }

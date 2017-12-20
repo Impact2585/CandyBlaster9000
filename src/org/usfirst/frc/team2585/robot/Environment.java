@@ -73,4 +73,12 @@ public class Environment extends RobotEnvironment {
 		}
 	}
 
+	@Override
+	public void stopRobot() {
+		for (RobotSystem system : systems.values()) {
+			system.stop();
+		}
+		
+	}
+
 }

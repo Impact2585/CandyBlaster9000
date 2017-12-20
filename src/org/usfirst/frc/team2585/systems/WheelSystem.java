@@ -42,4 +42,12 @@ public class WheelSystem extends RobotSystem {
 	public void destroy() {
 		drive.destroy();
 	}
+	
+	/* (non-Javadoc)
+	 * @see org.usfirst.frc.team2585.systems.RobotSystem#stop()
+	 */
+	@Override
+	public void stop() {
+		drive.arcadeControl(0, 0, false, false);
+	}
 }

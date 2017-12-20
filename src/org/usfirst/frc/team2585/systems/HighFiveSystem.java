@@ -67,4 +67,12 @@ public class HighFiveSystem extends RobotSystem implements Runnable {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see org.usfirst.frc.team2585.systems.RobotSystem#stop()
+	 */
+	@Override
+	public void stop() {
+		setArmSpeed(0);
+	}
+
 }

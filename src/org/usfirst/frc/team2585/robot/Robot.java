@@ -1,6 +1,6 @@
 package org.usfirst.frc.team2585.robot;
 
-import org.impact2585.lib2585.ExecuterBasedRobot;
+import org.impact2585.lib2585.ExecutorBasedRobot;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -9,7 +9,7 @@ import org.impact2585.lib2585.ExecuterBasedRobot;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  */
-public class Robot extends ExecuterBasedRobot {
+public class Robot extends ExecutorBasedRobot {
 	private static final long serialVersionUID = -6422460822926963853L;
 	
 	private Environment environ;
@@ -28,7 +28,7 @@ public class Robot extends ExecuterBasedRobot {
 	 */
 	@Override 
 	public void teleopInit() {
-		setExecuter(new TeleopExecutor(environ));
+		setExecutor(new TeleopExecutor(environ));
 	}
 
 	/**
