@@ -1,18 +1,15 @@
 package org.usfirst.frc.team2585.systems;
 
+import org.impact2585.lib2585.RampedSpeedController;
 import org.usfirst.frc.team2585.robot.Environment;
 import org.usfirst.frc.team2585.robot.RobotMap;
-
-import edu.wpi.first.wpilibj.PWM;
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Victor;
 
 /**
  * The system that gives high fives when the user presses a button
  */
 public class HighFiveSystem extends RobotSystem implements Runnable {
-	SpeedController lowerArmMotor;
-	SpeedController upperArmMotor;
+	RampedSpeedController lowerArmMotor;
+	RampedSpeedController upperArmMotor;
 	
 	static double highFiveSpeed = 0.8;
 	
@@ -23,8 +20,8 @@ public class HighFiveSystem extends RobotSystem implements Runnable {
 	public void init(Environment environ) {
 		super.init(environ);
 
-		lowerArmMotor = new Victor(RobotMap.HIGH_FIVE_MOTOR_LOWER);
-		upperArmMotor = new Victor(RobotMap.HIGH_FIVE_MOTOR_UPPER);
+		lowerArmMotor = new RampedSpeedController(RobotMap.HIGH_FIVE_MOTOR_LOWER);
+		upperArmMotor = new RampedSpeedController(RobotMap.HIGH_FIVE_MOTOR_UPPER);
 	}
 	
 	/* (non-Javadoc)
@@ -49,8 +46,8 @@ public class HighFiveSystem extends RobotSystem implements Runnable {
 	 * @param armSpeed the speed to set the arm motor to
 	 */
 	public void setArmSpeed(double armSpeed) {
-		lowerArmMotor.set(armSpeed);
-		upperArmMotor.set(-armSpeed/2);
+		lowerArmMotor.updateWithSpeed(armSpeed);
+		upperArmMotor.updateWithSpeed(-armSpeed/2);
 	}
 	
 	/* (non-Javadoc)
@@ -59,12 +56,8 @@ public class HighFiveSystem extends RobotSystem implements Runnable {
 	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
-		if (lowerArmMotor instanceof PWM) {
-			((PWM) lowerArmMotor).free();
-		}
-		if (upperArmMotor instanceof PWM) {
-			((PWM) upperArmMotor).free();
-		}
+		lowerArmMotor.destroy();
+		upperArmMotor.destroy();
 	}
 
 	/* (non-Javadoc)

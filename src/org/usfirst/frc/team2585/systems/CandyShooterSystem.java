@@ -1,16 +1,14 @@
 package org.usfirst.frc.team2585.systems;
 
+import org.impact2585.lib2585.RampedSpeedController;
 import org.usfirst.frc.team2585.robot.Environment;
 import org.usfirst.frc.team2585.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.PWM;
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Victor;
-
-// This system shoots candy whenever a button is pressed
-
+/**
+ * This system shoots candy whenever a button is pressed
+ */
 public class CandyShooterSystem extends RobotSystem implements Runnable {
-	SpeedController candyMotor;
+	RampedSpeedController candyMotor;
 	
 	//This number needs to be adjusted I MADE 0.6 UP, DO NOT USE!!!
 	static double candyMotorSpeed = 0.6;
@@ -26,7 +24,7 @@ public class CandyShooterSystem extends RobotSystem implements Runnable {
 	public void init(Environment environ) {
 		super.init(environ);
 
-		candyMotor = new Victor(RobotMap.SHOOTER_MOTOR);
+		candyMotor = new RampedSpeedController(RobotMap.SHOOTER_MOTOR);
 	}
 
 	/*
@@ -46,7 +44,7 @@ public class CandyShooterSystem extends RobotSystem implements Runnable {
 	 * @param candyMotorSpeed is the speed to set the motor to
 	 */
 	public void setMotorSpeed(double candyMotorSpeed) {
-		candyMotor.set(candyMotorSpeed);
+		candyMotor.updateWithSpeed(candyMotorSpeed);
 	}
 
 	/*
@@ -56,10 +54,7 @@ public class CandyShooterSystem extends RobotSystem implements Runnable {
 	 */
 	@Override
 	public void destroy() {
-		// TODO Auto-generated method stub
-		if (candyMotor instanceof PWM) {
-			((PWM) candyMotor).free();
-		}
+		candyMotor.destroy();
 	}
 
 	/* (non-Javadoc)
