@@ -28,6 +28,17 @@ public class CandyShooterSystemTest {
 	}
 	
 	/**
+	 * Tests that the speed of the motor is more than 0
+	 * when the shoot button is pressed
+	 */
+	@Test
+	public void motorRunsWhenShooting() {
+		shouldShootCandyInput = true;
+		candyShooterSystem.run();
+		Assert.assertTrue(shooterSpeedOutput > 0);
+	}
+	
+	/**
 	 * Tests that the speed of the motor starts as zero when the 
 	 * user gives no input
 	 */
@@ -60,7 +71,7 @@ public class CandyShooterSystemTest {
 		 * @see org.usfirst.frc.team2585.input.InputMethod#shouldHighFiveUp()
 		 */
 		@Override
-		public boolean shouldHighFiveUp() {
+		public boolean shouldShoot() {
 			return shouldShootCandyInput;
 		}
 		
